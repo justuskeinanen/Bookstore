@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Books for Crooks!</title>
+		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	</head>
+	<body>
+		<h1>Here is all our books at the moment!</h1>
+		<table>
+			<tbody>
+				<tr th:each = "book : ${books}">
+					<td th:text="${book.name}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.price}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
