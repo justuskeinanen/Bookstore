@@ -13,9 +13,9 @@ import javax.persistence.OneToMany;
 public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long authorId;
-	private String firstName;
-	private String lastName;
+	public long authorId;
+	public String firstName;
+	public String lastName;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
 	private List<Book> books;
@@ -23,6 +23,12 @@ public class Author {
 	public Author() {
 	}
 
+	public Author(String wholeName) {
+		super();
+		String[] palat = wholeName.split(",");
+		this.firstName = palat[1];
+		this.lastName = palat[0];
+	}
 	public Author(String lastName, String firstName) {
 		super();
 		this.firstName = firstName;
@@ -69,9 +75,11 @@ public class Author {
 		this.lastName = lastName;
 	}
 
-	@Override
 	public String toString() {
-		return "Author [id=" + authorId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return this.lastName + ", " + this.firstName;
 	}
-
+	/*
+	 * @Override public String toString() { return "Author [id=" + authorId +
+	 * ", firstName=" + firstName + ", lastName=" + lastName + "]"; }
+	 */
 }

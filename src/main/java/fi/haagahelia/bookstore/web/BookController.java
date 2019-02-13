@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fi.haagahelia.bookstore.domain.Author;
 import fi.haagahelia.bookstore.domain.AuthorRepository;
 import fi.haagahelia.bookstore.domain.Book;
 import fi.haagahelia.bookstore.domain.BookRepository;
@@ -31,6 +32,7 @@ public class BookController {
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("authors", authorRepo.findAll());
+		model.addAttribute("author", new Author());
 		return "addBook";
 	}
 	
@@ -38,6 +40,12 @@ public class BookController {
 	public String save(Book book) {
 		bookRepo.save(book);
 		return "redirect:allbooks";
+	}
+	
+	@RequestMapping(value = "/saveAuthor", method = RequestMethod.POST)
+	public String saveAuthor(Author author) {
+		authorRepo.save(author);
+		return "redirect:../add";
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
